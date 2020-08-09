@@ -5,6 +5,7 @@ const cron = require("node-cron");
 //const express = require('express');
 const path = require('path')
 
+// comment this out
 const token = fs.readFileSync("./token.tkn")
 
 var encounters = JSON.parse(fs.readFileSync("./encounters.json"));
