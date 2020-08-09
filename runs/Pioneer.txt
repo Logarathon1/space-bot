@@ -1,0 +1,84 @@
+Ship Designation: Pioneer
+[09:58:10 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[09:59:26 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:00:33 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:01:41 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:02:14 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:03:07 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:04:37 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:05:40 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:06:54 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:07:52 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:08:29 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:09:06 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:10:30 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:11:27 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:12:08 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:13:12 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:14:03 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:15:13 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:16:18 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:17:33 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:18:31 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:19:40 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:20:53 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:21:07 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:22:08 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:23:02 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:24:19 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:25:04 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:26:10 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:27:53 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:28:12 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:29:13 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:30:46 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:31:45 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:32:35 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:33:53 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:34:08 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:35:19 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:36:54 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:37:35 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:38:40 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:39:12 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:40:47 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:41:44 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:42:09 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:43:14 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:44:13 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:45:37 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:46:30 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:47:28 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:48:00 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:49:35 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:50:27 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:51:52 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:52:43 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:53:22 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:54:00 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[10:55:46 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:56:16 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:57:03 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[10:58:25 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[10:59:27 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[11:00:25 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[11:01:48 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[11:02:21 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:03:32 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:04:21 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:05:46 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:06:02 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:07:17 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:08:17 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:09:38 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:10:35 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:11:24 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:12:33 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[11:13:43 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:14:09 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:15:08 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:16:39 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[11:17:38 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties
+[11:18:49 09/08/2020 UTC] Encountered a stray comet on a direct collision course with the ship
+[11:19:42 09/08/2020 UTC] Encountered a stray comet, spectral analysis indicates a potential fuel match
+[11:20:23 09/08/2020 UTC] Encountered a stray comet, initial scans indicate interesting properties

@@ -1,4 +1,53 @@
 [
-{"encounterText":"Encountered a comet"},
-{"encounterText":"Encountered an asteroid"}
+	{
+		"description":"Science Comet",
+		"encounterText":"Encountered a stray comet, initial scans indicate interesting properties",
+		"condition":{
+			"reqScienceSensor":true
+		},
+		
+		"success":{
+			"successText":", further analysis reveals data potentially valuable for future applications (+1 Science)",
+			"science":1
+		},
+		
+		"failure":{
+			"failText":", unable to extract valuable data due to damage to scientific sensors"
+		}
+	},
+	{
+		"description":"Collision Comet",
+		"encounterText":"Encountered a stray comet on a direct collision course with the ship",
+		"condition":{
+			"reqFuel":1
+		},
+		
+		"success":{
+			"successText":", minor course correction successfully executed (-1 Fuel)",
+			"fuel":-1
+		},
+		
+		"failure":{
+			"failText":", insufficent fuel to execute full course correction, hull damage sustained (-5 Ship Integrity)",
+			"shipIntegrity":-5
+			
+		}
+	},
+	{
+		"description":"Fuel Comet",
+		"encounterText":"Encountered a stray comet, spectral analysis indicates a potential fuel match",
+		"condition":{
+			"reqFuelSensor":true
+		},
+		
+		"success":{
+			"successText":", fuel source compatible and successfully harvested (+5 Fuel)",
+			"fuel":5
+		},
+		
+		"failure":{
+			"failText":", sensors unable to confirm pattern match"
+			
+		}
+	}
 ]
