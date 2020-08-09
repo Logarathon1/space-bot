@@ -1,4 +1,4 @@
 node_modules/
-token.tkn
+*.tkn
 HISTORY.txt
 README.txt
