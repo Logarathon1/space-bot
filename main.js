@@ -102,6 +102,8 @@ cron.schedule('0 * * * *', () => {
 	
 	// do all of the hourly stuff
 	
+	hourlyData = "";
+	
 	// life support tick
 	
 	if ((ship.lifeSupport / 100) < Math.random()) {
@@ -235,6 +237,7 @@ cron.schedule('0 * * * *', () => {
 	
 	fs.writeFileSync("./ship.json",JSON.stringify(ship))
 	
+	hourlyData = "";
 	toPost = "";
 	fs.writeFileSync("./to-post.txt",toPost)
 });
