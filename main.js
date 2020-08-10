@@ -438,9 +438,9 @@ function run () {
 	}
 	
 	// roll chance for encounter
-	// a 5% chance should work for now, can tweak later
+	// a 4% chance should work for now, can tweak later
 	
-	if (Math.random() < 0.05) {
+	if (Math.random() < 0.04) {
 		
 		// if successful, wait between one and fifty five seconds for added randomness
 		
