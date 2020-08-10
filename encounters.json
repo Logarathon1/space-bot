@@ -240,7 +240,7 @@
 		"solarArray":1
 	},
 	{
-		"description":"Solar Array Malfunction",
+		"description":"Solar Array Damage",
 		"encounterText":"Extended use of the solar array has lead to standard wear, repair recommended",
 		"solarArray":-1
 	}

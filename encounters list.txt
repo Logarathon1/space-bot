@@ -73,3 +73,9 @@
 
 >  Crew Accident
 >> Lose 1 Crew
+
+>  Derelict Satellite
+>> Gain 1 Sensors, 1 Solar Array
+
+>  Solar Array Damage
+>> Lose 1 Solar Array
