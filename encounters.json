@@ -232,6 +232,17 @@
 		"description":"Crew Accident",
 		"encounterText":"Crew member leaned on main propulsion reactor, guarding on the unit was faulty, crew member exposed to fatal temperature levels, technical fault repaired at once",
 		"crew":-1
+	},
+	{
+		"description":"Derelict Probe",
+		"encounterText":"Encountered a derelict space probe, several components still operational and able to be salvaged, integrated into systems with no difficulty",
+		"sensors":1,
+		"solarArray":1
+	},
+	{
+		"description":"Solar Array Malfunction",
+		"encounterText":"Extended use of the solar array has lead to standard wear, repair recommended",
+		"solarArray":-1
 	}
 	
 ]
