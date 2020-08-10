@@ -1,0 +1,75 @@
+# list of encounters so i can read them better
+
+# [x] denotes the minimum number of conditions to be met
+
+# Conditional
+
+>  Science Comet
+>> Requires [1] - Science Sensor
+>> Success: Gain 1 Science
+>> Failure: Nothing
+
+>  Collision Comet
+>> Requires [1] - 1x Fuel
+>> Success: Lose 1 Fuel
+>> Failure: Lose 5 Ship Integrity
+
+>  Collision Murder Comet
+>> Requires [1] - 1x Fuel
+>> Success: Lose 1 Fuel
+>> Failure: Lose 7 Ship Integrity, Lose 5 Crew
+
+>  Fuel Comet
+>> Requires [1] - Fuel Sensor
+>> Success: Gain 5 Fuel
+>> Failure: Nothing
+
+>  Fuel Asteroid
+>> Requires [2] - Sensors, Fuel Sensor
+>> Success: Gain 10 Fuel
+>> Failure: Nothing
+
+>  Power Surge
+>> Requires [1] - Power Sensor
+>> Success: Lose 1 Power Sensor
+>> Failure: Lose 2 Ship Computer, Lose 2 Science
+
+>  Fuel Cell Rupture
+>> Requires [1] - 80 Ship Integrity
+>> Success: Lose 1 Ship Integrity
+>> Failure: Lose 5 Fuel, Lose 3 Ship Integrity
+
+>  Solar Array Damage
+>> Requires [2] - 80 Ship Integrity, Solar Array
+>> Success: Lose 1 Ship Integrity
+>> Failure: Lose 3 Solar Array
+
+>  Sensor Overload
+>> Requires [5] - Sensors, Oxygen Sensor, Fuel Sensor, Power Sensor, Science Sensor, Ship Computer
+>> Success: Gain 3 Science
+>> Fail: Lose 2 Sensors, Lose 2 Oxygen Sensor, Lose 2 Fuel Sensor, Lose 2 Power Sensor, Lose 2 Science Sensor, Lose 2 Ship Computer
+
+>  Sensor Glitch
+>> Requires [2] - Sensors, Ship Computer
+>> Success: Gain 1 Science
+>> Failure: Lose 1 Sensors
+
+# Unconditional
+
+>  Useless Comet
+>> Nothing
+
+>  Gravitational Anomaly
+>> Lose 5 Speed, Gain 1 Science
+
+>  Solar Winds
+>> Gain 50 Speed, Lose 2 Sensors
+
+>  Asteroid Stream
+>> Lose 1 Ship Integrity
+
+>  Cosmic Interference
+>> Gain 1 Science, Lose 1 Ship Computer
+
+>  Crew Accident
+>> Lose 1 Crew

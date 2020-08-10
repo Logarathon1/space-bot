@@ -34,8 +34,14 @@ const prefix = "io!";
 var client = new discord.Client();
 client.login (disctoken.toString());
 
-var shipnames = JSON.parse(fs.readFileSync("./shipnames.json"));
+//	this file contains all of the space events that can be encountered by the ship
+//	some of the events have conditions that will either be met or not, with the outcome dependant on it
+//	based on a scoring system, events require a certain amount of conditions to be met, if so a success
+//	is given, and if not a failure is given, other events do not have conditions, and will have a fixed 
+//	outcome that may or may not reward punish the ship and it's crew
 var encounters = JSON.parse(fs.readFileSync("./encounters.json"));
+
+var shipnames = JSON.parse(fs.readFileSync("./shipnames.json"));
 var crewnames = JSON.parse(fs.readFileSync("./crewnames.json"));
 
 FB.setAccessToken(fbtoken.toString());
@@ -84,6 +90,7 @@ cron.schedule('0 * * * *', () => {
 		}
 		else if (response && !response.error) {
 			for (i = 0; i < response.data.length; i++) {
+				response.data[i].from.name
 				crewnames.push(response.data[i].from.name)
 			}
 		}
@@ -105,7 +112,10 @@ cron.schedule('0 * * * *', () => {
 	// oxygen tick
 	
 	if (ship.oxygen < 20) {
-		hourlyData += "\n" + ship.crew.pop().name + " has died due to insufficent oxygen levels"
+		//	kill someone
+		//	anyone
+		deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+		hourlyData += "\n" + deadPerson.rank + " " + deadPerson.name + " has died due to insufficent oxygen levels"
 	}
 	
 	// solar tick
@@ -558,6 +568,15 @@ function run () {
 					if (encounterSel.success.solarArray) {
 						ship.solarArray += encounterSel.success.solarArray
 					}
+					
+					if (encounterSel.success.crew) {
+						if (encounterSel.success.crew < 0) {
+							for (i = 0; i > encounterSel.success.crew; i--) {
+								deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+							}
+						}
+					}
 				}
 				else {
 					// fail
@@ -610,6 +629,15 @@ function run () {
 					}
 					if (encounterSel.failure.solarArray) {
 						ship.solarArray += encounterSel.failure.solarArray
+					}
+					
+					if (encounterSel.failure.crew) {
+						if (encounterSel.failure.crew < 0) {
+							for (i = 0; i > encounterSel.failure.crew; i--) {
+								deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+							}
+						}
 					}
 					
 				}
@@ -676,6 +704,15 @@ function run () {
 				}
 				if (encounterSel.solarArray) {
 					ship.solarArray += encounterSel.solarArray
+				}
+				
+				if (encounterSel.crew) {
+					if (encounterSel.crew < 0) {
+						for (i = 0; i > encounterSel.crew; i--) {
+							deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+							toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+						}
+					}
 				}
 				
 				if (ship.oxygen > 100) {
@@ -789,7 +826,7 @@ class Ship {
 		
 		for (i = 0; i < totalCrew; i++) {
 			if (crewnames.length > 0) {
-				this.crew.push(new Person(crewnames.splice(Math.floor(Math.random() * crewnames.length)), i))
+				this.crew.push(new Person(crewnames.splice(Math.floor(Math.random() * crewnames.length), 1), i))
 			}
 			else {
 				this.crew.push(new Person("Crew Member " + (i + 1), i))

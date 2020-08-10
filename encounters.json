@@ -36,6 +36,26 @@
 		}
 	},
 	{
+		"description":"Collision Murder Comet",
+		"encounterText":"Encountered a stray comet on a direct collision course with the ship",
+		"condition":{
+			"reqFuel":1
+		},
+		"score":1,
+		
+		"success":{
+			"successText":", minor course correction successfully executed",
+			"fuel":-1
+		},
+		
+		"failure":{
+			"failText":", insufficent fuel to execute full course correction, hull breach sustained, several crew members lost",
+			"shipIntegrity":-7,
+			"crew":-5
+			
+		}
+	},
+	{
 		"description":"Fuel Comet",
 		"encounterText":"Encountered a stray comet, spectral analysis indicates a potential fuel match",
 		"condition":{
@@ -46,6 +66,25 @@
 		"success":{
 			"successText":", fuel source compatible and successfully harvested",
 			"fuel":5
+		},
+		
+		"failure":{
+			"failText":", sensors unable to confirm pattern match"
+			
+		}
+	},
+	{
+		"description":"Fuel Asteroid",
+		"encounterText":"Encountered a stray asteroid, spectral analysis indicates a potential fuel match",
+		"condition":{
+			"reqFuelSensor":true,
+			"reqSensors":true
+		},
+		"score":2,
+		
+		"success":{
+			"successText":", fuel source compatible and successfully harvested",
+			"fuel":10
 		},
 		
 		"failure":{
@@ -87,8 +126,8 @@
 		
 		"failure":{
 			"failText":", multiple hull breaches sustained in fuel storage section, significant fuel lost",
-			"fuel":-3,
-			"shipIntegrity":-2
+			"fuel":-5,
+			"shipIntegrity":-3
 		}
 	},
 	{
@@ -138,7 +177,25 @@
 			"shipComputer":-2
 		}
 	},
-	
+	{
+		"description":"Sensor Glitch",
+		"encounterText":"Sensor array detected anomalous readings ahead",
+		"condition":{
+			"reqSensors":true,
+			"reqShipComputer":true
+		},
+		"score":2,
+		
+		"success":{
+			"successText":", able to confirm it as a sensor glitch, carried on standard course",
+			"science":1
+		},
+		
+		"failure":{
+			"failText":", slight course correction executed but later revealed to be a sensor glitch, system diagnostic recommended",
+			"sensors":-1
+		}
+	},
 	
 	
 	
@@ -170,6 +227,11 @@
 		"encounterText":"Sensors detected strange cosmic readings, main computer had some difficulty converting readings into usable data",
 		"science":1,
 		"shipComputer":-1
+	},
+	{
+		"description":"Crew Accident",
+		"encounterText":"Crew member leaned on main propulsion reactor, guarding on the unit was faulty, crew member exposed to fatal temperature levels, technical fault repaired at once",
+		"crew":-1
 	}
 	
 ]
