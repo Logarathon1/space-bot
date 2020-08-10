@@ -63,7 +63,7 @@
 		
 		"success":{
 			"successText":", rerouted excess power through the power sensor array, slight damage sustained",
-			"powerSensor":-5
+			"powerSensor":-1
 		},
 		
 		"failure":{

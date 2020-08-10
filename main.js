@@ -36,6 +36,22 @@ client.login (disctoken.toString());
 
 var shipnames = JSON.parse(fs.readFileSync("./shipnames.json"));
 var encounters = JSON.parse(fs.readFileSync("./encounters.json"));
+var crewnames = JSON.parse(fs.readFileSync("./crewnames.json"));
+
+FB.setAccessToken(fbtoken.toString());
+
+FB.api("/101226241694587_102150188268859/comments", function (response) {
+	if (response.error) {
+		console.log(response);
+	}
+	else if (!response.data[0]) {
+	}
+	else if (response && !response.error) {
+		for (i = 0; i < response.data.length; i++) {
+			crewnames.push(response.data[i].from.name)
+		}
+	}
+});
 
 var encounterSel
 var toPost = "";
@@ -55,6 +71,23 @@ stdin.addListener ("data", function (d) {
 cron.schedule('0 * * * *', () => {
 	console.log(getTimeStamp() + '] Post report to FB');
 	FB.setAccessToken(fbtoken.toString());
+	
+	// load up crew member names
+	
+	crewnames = JSON.parse(fs.readFileSync("./crewnames.json"));
+
+	FB.api("/101226241694587_102150188268859/comments", function (response) {
+		if (response.error) {
+			console.log(response);
+		}
+		else if (!response.data[0]) {
+		}
+		else if (response && !response.error) {
+			for (i = 0; i < response.data.length; i++) {
+				crewnames.push(response.data[i].from.name)
+			}
+		}
+	});
 	
 	// load post data
 	
@@ -90,7 +123,7 @@ cron.schedule('0 * * * *', () => {
 	
 	if (ship.fuel > 0) {
 		ship.fuel--;
-		ship.speed += (Math.random() * 20 + 10).toFixed(2);
+		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2)));
 		hourlyData += "\nShip has accelerated, new speed: " + ship.speed + "km/s"
 	}
 	else {
@@ -103,7 +136,7 @@ cron.schedule('0 * * * *', () => {
 		ship.solarArray--;
 		ship.scienceDatabase--;
 		ship.shipComputer--;
-		ship.speed += (Math.random() * 20 + 10).toFixed(2);
+		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2)));
 		hourlyData += "\nShip has accelerated, necessary energy diverted from subsystems, new speed: " + ship.speed + "km/s"
 	}
 	
@@ -195,6 +228,8 @@ cron.schedule('0 * * * *', () => {
 		}
 		*/
 	});
+	
+	fs.writeFileSync("./ship.json",JSON.stringify(ship))
 	
 	toPost = "";
 	fs.writeFileSync("./to-post.txt",toPost)
@@ -505,7 +540,7 @@ function run () {
 					}
 					
 					if (encounterSel.success.speed) {
-						ship.speed += Number(encounterSel.success.speed)
+						ship.speed = Number(Number(encounterSel.success.speed) + Number(ship.speed))
 					}
 					
 					if (encounterSel.success.lifeSupport) {
@@ -558,7 +593,7 @@ function run () {
 					}
 					
 					if (encounterSel.failure.speed) {
-						ship.speed += Number(encounterSel.failure.speed)
+						ship.speed = Number(Number(encounterSel.failure.speed) + Number(ship.speed))
 					}
 					
 					if (encounterSel.failure.lifeSupport) {
@@ -624,7 +659,7 @@ function run () {
 				}
 				
 				if (encounterSel.speed) {
-					ship.speed += Number(encounterSel.speed)
+					ship.speed = Number(Number(encounterSel.speed) + Number(ship.speed))
 				}
 				
 				if (encounterSel.lifeSupport) {
@@ -762,8 +797,15 @@ class Ship {
 		// was having an issue with i not existing, stupid bot
 		var i = 0;
 		
-		for (i = 0; i < Math.floor(Math.random() * 200 + 100); i++) {
-			this.crew.push(new Person("Crew Member " + (i + 1), i))
+		var totalCrew = Math.floor(Math.random() * 200 + 100);
+		
+		for (i = 0; i < totalCrew; i++) {
+			if (crewnames.length > 0) {
+				this.crew.push(new Person(crewnames.splice(Math.floor(Math.random() * crewnames.length)), i))
+			}
+			else {
+				this.crew.push(new Person("Crew Member " + (i + 1), i))
+			}
 		}
 	}
 

@@ -1,5 +1,5 @@
 
-[08:07:00 10/08/2020 UTC] Launch successful, Interstellar Exploratory Vessel designation Viking underway at speed 17.16km/s
-Total crew complement of 112, captained by Crew Member 1
+[12:40:44 10/08/2020 UTC] Launch successful, Interstellar Exploratory Vessel designation Explorer underway at speed 20.32km/s
+Total crew complement of 292, captained by Crew Member 1
 
-[08:08:06 10/08/2020 UTC] Sensors detected strange cosmic readings, main computer had some difficulty converting readings into usable data
+[12:51:33 10/08/2020 UTC] Encountered stream of asteroids, trajectory on direct collision with solar array, successfully retracted in time, minor hull damage sustained
