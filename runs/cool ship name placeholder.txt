@@ -1,5 +1,0 @@
-Ship Designation: cool ship name placeholder
-[16:22:53 09/08/2020 - 99460.00 kilometres (0.0000 ly) travelled] Encountered a stray comet
-[16:32:49 09/08/2020 - 111380.00 kilometres (0.0000 ly) travelled] Encountered a stray comet
-[16:54:33 09/08/2020 - 137459.94 kilometres (0.0000 ly) travelled] Encountered an asteroid
-[17:01:00 09/08/2020 - 145199.94 kilometres (0.0000 ly) travelled] Encountered a stray comet
