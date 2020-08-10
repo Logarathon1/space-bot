@@ -505,7 +505,7 @@ function run () {
 					}
 					
 					if (encounterSel.success.speed) {
-						ship.speed += encounterSel.success.speed
+						ship.speed += Number(encounterSel.success.speed)
 					}
 					
 					if (encounterSel.success.lifeSupport) {
@@ -558,7 +558,7 @@ function run () {
 					}
 					
 					if (encounterSel.failure.speed) {
-						ship.speed += encounterSel.failure.speed
+						ship.speed += Number(encounterSel.failure.speed)
 					}
 					
 					if (encounterSel.failure.lifeSupport) {
@@ -624,7 +624,7 @@ function run () {
 				}
 				
 				if (encounterSel.speed) {
-					ship.speed += encounterSel.speed
+					ship.speed += Number(encounterSel.speed)
 				}
 				
 				if (encounterSel.lifeSupport) {

@@ -1,5 +1,5 @@
 
-[07:01:38 10/08/2020 UTC] Launch successful, Interstellar Exploratory Vessel designation Explorer underway at speed 10.27km/s
-Total crew complement of 111, captained by Crew Member 1
+[08:07:00 10/08/2020 UTC] Launch successful, Interstellar Exploratory Vessel designation Viking underway at speed 17.16km/s
+Total crew complement of 112, captained by Crew Member 1
 
-[07:02:17 10/08/2020 UTC] An electrical anomaly has triggered a power surge in the ship, rerouted excess power through the power sensor array, slight damage sustained
+[08:08:06 10/08/2020 UTC] Sensors detected strange cosmic readings, main computer had some difficulty converting readings into usable data

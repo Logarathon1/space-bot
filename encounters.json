@@ -151,7 +151,7 @@
 	{
 		"description":"Gravitational Anomaly",
 		"encounterText":"Encountered a gravitational anomaly, ship slowed down slightly, but scientific data gained could prove useful in the future",
-		"speed":-10,
+		"speed":-5,
 		"science":1
 	},
 	{
