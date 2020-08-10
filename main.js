@@ -10,7 +10,7 @@
 //	Encounters will have various effects on each of the ship's systems and resources, and as time 
 //	progresses the 'story' of the ship will too. While there is no scripted story that is followed, 
 //	notable encounters are recorded and can be accessed via the supplemental Discord Bot, as can a
-//	report on the status of the ship
+//	report on the status of the ship.
 //
 //	Additionally, crew member names can be submitted either via the comments section of a specific
 //	Facebook post, or through moderated Discord submissions. Facebook entries are not moderated as
@@ -123,7 +123,7 @@ cron.schedule('0 * * * *', () => {
 	
 	if (ship.fuel > 0) {
 		ship.fuel--;
-		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2)));
+		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2))).toFixed(2);
 		hourlyData += "\nShip has accelerated, new speed: " + ship.speed + "km/s"
 	}
 	else {
@@ -136,7 +136,7 @@ cron.schedule('0 * * * *', () => {
 		ship.solarArray--;
 		ship.scienceDatabase--;
 		ship.shipComputer--;
-		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2)));
+		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2))).toFixed(2);
 		hourlyData += "\nShip has accelerated, necessary energy diverted from subsystems, new speed: " + ship.speed + "km/s"
 	}
 	
@@ -540,7 +540,7 @@ function run () {
 					}
 					
 					if (encounterSel.success.speed) {
-						ship.speed = Number(Number(encounterSel.success.speed) + Number(ship.speed))
+						ship.speed = Number(Number(encounterSel.success.speed) + Number(ship.speed)).toFixed(2)
 					}
 					
 					if (encounterSel.success.lifeSupport) {
@@ -593,7 +593,7 @@ function run () {
 					}
 					
 					if (encounterSel.failure.speed) {
-						ship.speed = Number(Number(encounterSel.failure.speed) + Number(ship.speed))
+						ship.speed = Number(Number(encounterSel.failure.speed) + Number(ship.speed)).toFixed(2)
 					}
 					
 					if (encounterSel.failure.lifeSupport) {
