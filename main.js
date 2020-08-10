@@ -214,19 +214,13 @@ cron.schedule('0 * * * *', () => {
 		}
 		console.log(getTimeStamp() + "Posted Successfully!");
 		console.log(getTimeStamp() + 'Post Id: ' + res.id);
-		/*
-		if (comment != null) {
-			var body = comment;
-			console.log(getTimeStamp() + "Posting Moves Comment...");
-			FB.api(res.id + '/comments', 'post', { message: body }, function (comm) {
+		FB.api(res.id + '/comments', 'post', { message: "[Operational Report]\n" + getShipInfo() }, function (comm) {
 			if(!comm || comm.error) {
 				console.log(!comm ? 'error occurred' : comm.error);
 				return true;
 			}
 			console.log(getTimeStamp() + "Comment Posted Successfully!");
-			});
-		}
-		*/
+		});
 	});
 	
 	fs.writeFileSync("./ship.json",JSON.stringify(ship))
@@ -412,19 +406,13 @@ function run () {
 			}
 			console.log(getTimeStamp() + "Posted Successfully!");
 			console.log(getTimeStamp() + 'Post Id: ' + res.id);
-			/*
-			if (comment != null) {
-				var body = comment;
-				console.log(getTimeStamp() + "Posting Moves Comment...");
-				FB.api(res.id + '/comments', 'post', { message: body }, function (comm) {
+			FB.api(res.id + '/comments', 'post', { message: "[Operational Report]\n" + getShipInfo() }, function (comm) {
 				if(!comm || comm.error) {
 					console.log(!comm ? 'error occurred' : comm.error);
 					return true;
 				}
 				console.log(getTimeStamp() + "Comment Posted Successfully!");
-				});
-			}
-			*/
+			});
 		});
 	
 		toPost = "";
