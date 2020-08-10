@@ -10,7 +10,7 @@ posting a report of what encounters have occurred to Facebook every hour.
 Encounters will have various effects on each of the ship's systems and resources, and as time 
 progresses the 'story' of the ship will too. While there is no scripted story that is followed, 
 notable encounters are recorded and can be accessed via the supplemental Discord Bot, as can a
-'live' feed of encounters posted as they occur.
+report on the status of the vessel
 
 Additionally, crew member names can be submitted either via the comments section of a specific
 Facebook post, or through moderated Discord submissions. Facebook entries are not moderated as

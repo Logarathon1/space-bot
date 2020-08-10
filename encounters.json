@@ -5,9 +5,10 @@
 		"condition":{
 			"reqScienceSensor":true
 		},
+		"score":1,
 		
 		"success":{
-			"successText":", further analysis reveals data potentially valuable for future applications (+1 Science)",
+			"successText":", further analysis reveals data potentially valuable for future applications",
 			"science":1
 		},
 		
@@ -21,14 +22,15 @@
 		"condition":{
 			"reqFuel":1
 		},
+		"score":1,
 		
 		"success":{
-			"successText":", minor course correction successfully executed (-1 Fuel)",
+			"successText":", minor course correction successfully executed",
 			"fuel":-1
 		},
 		
 		"failure":{
-			"failText":", insufficent fuel to execute full course correction, hull damage sustained (-5 Ship Integrity)",
+			"failText":", insufficent fuel to execute full course correction, hull damage sustained",
 			"shipIntegrity":-5
 			
 		}
@@ -39,9 +41,10 @@
 		"condition":{
 			"reqFuelSensor":true
 		},
+		"score":1,
 		
 		"success":{
-			"successText":", fuel source compatible and successfully harvested (+5 Fuel)",
+			"successText":", fuel source compatible and successfully harvested",
 			"fuel":5
 		},
 		
@@ -49,5 +52,124 @@
 			"failText":", sensors unable to confirm pattern match"
 			
 		}
+	},
+	{
+		"description":"Power Surge",
+		"encounterText":"An electrical anomaly has triggered a power surge in the ship",
+		"condition":{
+			"reqPowerSensor":true
+		},
+		"score":1,
+		
+		"success":{
+			"successText":", rerouted excess power through the power sensor array, slight damage sustained",
+			"powerSensor":-5
+		},
+		
+		"failure":{
+			"failText":", surge reached scientific database and main computer core, slight data loss sustained",
+			"shipComputer":-2,
+			"science":-2
+		}
+	},
+	{
+		"description":"Fuel Cell Rupture",
+		"encounterText":"Ship caught in a stream of small asteroids",
+		"condition":{
+			"reqShipIntegrity":80
+		},
+		"score":1,
+		
+		"success":{
+			"successText":", minor hull damage sustained",
+			"shipIntegrity":-1
+		},
+		
+		"failure":{
+			"failText":", multiple hull breaches sustained in fuel storage section, significant fuel lost",
+			"fuel":-3,
+			"shipIntegrity":-2
+		}
+	},
+	{
+		"description":"Solar Array Damage",
+		"encounterText":"Encountered stream of asteroids, trajectory on direct collision with solar array",
+		"condition":{
+			"reqShipIntegrity":80,
+			"reqSolarArray":true
+		},
+		"score":2,
+		
+		"success":{
+			"successText":", successfully retracted in time, minor hull damage sustained",
+			"shipIntegrity":-1
+		},
+		
+		"failure":{
+			"failText":", malfunction in retractor mechanism, significant damage sustained",
+			"solarArray":-3
+		}
+	},
+	{
+		"description":"Sensor Overload",
+		"encounterText":"Sensor array struck by anomalous, high-density data stream",
+		"condition":{
+			"reqSensors":true,
+			"reqOxygenSensor":true,
+			"reqFuelSensor":true,
+			"reqPowerSensor":true,
+			"reqScienceSensor":true,
+			"reqShipComputer":true
+		},
+		"score":5,
+		
+		"success":{
+			"successText":", able to reroute excess data safely into the scientific database for future analysis",
+			"science":3
+		},
+		
+		"failure":{
+			"failText":", excess data unable to be safely routed, corruption to all systems detected",
+			"sensors":-2,
+			"oxygenSensor":-2,
+			"fuelSensor":-2,
+			"powerSensor":-2,
+			"scienceSensor":-2,
+			"shipComputer":-2
+		}
+	},
+	
+	
+	
+	
+	
+	
+	{
+		"description":"Useless Comet",
+		"encounterText":"Encountered a stray comet, not of any use for any resource or scientific purposes, but a sight to behold nonetheless"
+	},
+	{
+		"description":"Gravitational Anomaly",
+		"encounterText":"Encountered a gravitational anomaly, ship slowed down slightly, but scientific data gained could prove useful in the future",
+		"speed":-10,
+		"science":1
+	},
+	{
+		"description":"Solar Winds",
+		"encounterText":"Ship caught in a stream of solar wind, speed increased at the cost of some sensor interference",
+		"speed":50,
+		"sensors":-2
+	},
+	{
+		"description":"Asteroid Stream",
+		"encounterText":"Ship caught in a stream of small asteroids, minor hull damage sustained",
+		"shipIntegrity":-1
+	},
+	{
+		"description":"Cosmic Interference",
+		"encounterText":"Sensors detected strange cosmic readings, main computer had some difficulty converting readings into usable data",
+		"science":1,
+		"shipComputer":-1
 	}
+	
 ]
