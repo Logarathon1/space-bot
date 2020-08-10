@@ -116,7 +116,7 @@ cron.schedule('0 * * * *', () => {
 	if (ship.oxygen < 20) {
 		//	kill someone
 		//	anyone
-		deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+		deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
 		hourlyData += "\n" + deadPerson.rank + " " + deadPerson.name + " has died due to insufficent oxygen levels"
 	}
 	
@@ -575,7 +575,7 @@ function run () {
 					if (encounterSel.success.crew) {
 						if (encounterSel.success.crew < 0) {
 							for (i = 0; i > encounterSel.success.crew; i--) {
-								deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+								deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
 								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
 							}
 						}
@@ -637,7 +637,7 @@ function run () {
 					if (encounterSel.failure.crew) {
 						if (encounterSel.failure.crew < 0) {
 							for (i = 0; i > encounterSel.failure.crew; i--) {
-								deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+								deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
 								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
 							}
 						}
@@ -712,7 +712,7 @@ function run () {
 				if (encounterSel.crew) {
 					if (encounterSel.crew < 0) {
 						for (i = 0; i > encounterSel.crew; i--) {
-							deadPerson = ship.crew.splice(Math.floor(Math.random() * crew.length), 1)
+							deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
 							toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
 						}
 					}
