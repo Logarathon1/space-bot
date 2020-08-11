@@ -519,6 +519,9 @@ function run () {
 				if (encounterSel.condition.reqShipIntegrity && Math.random() < (ship.shipIntegrity / 100)) {
 					score++;
 				}
+				if (encounterSel.condition.reqLuck && Math.random() < (encounterSel.reqLuck / 100)) {
+					score++;
+				}
 				
 				if (score >= encounterSel.score) {
 					// success

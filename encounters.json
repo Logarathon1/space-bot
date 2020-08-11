@@ -31,7 +31,8 @@
 		
 		"failure":{
 			"failText":", insufficent fuel to execute full course correction, hull damage sustained",
-			"shipIntegrity":-5
+			"shipIntegrity":-5,
+			"oxygen":-2
 			
 		}
 	},
@@ -51,7 +52,8 @@
 		"failure":{
 			"failText":", insufficent fuel to execute full course correction, hull breach sustained, several crew members lost",
 			"shipIntegrity":-7,
-			"crew":-5
+			"crew":-5,
+			"oxygen":-10
 			
 		}
 	},
@@ -196,9 +198,124 @@
 			"sensors":-1
 		}
 	},
-	
-	
-	
+	{
+		"description":"Airlock Malfunction",
+		"encounterText":"Airlock door reported to be improperly locking",
+		"condition":{
+			"reqShipComputer":true
+		},
+		"score":1,
+		
+		"success":{
+			"successText":", technical fault corrected before any harm could be done"
+		},
+		
+		"failure":{
+			"failText":", crew member sent to repair was in airlock at time of malfunction and ejected into space, technical fault corrected shortly after",
+			"crew":-1
+		}
+	},
+	{
+		"description":"Reactor Optimization",
+		"encounterText":"Lead engineer made several adjustments to the main propulsion reactor",
+		"condition":{
+			"reqLuck":80,
+			"reqPowerSensor":true,
+			"reqFuel":3
+		},
+		"score":3,
+		
+		"success":{
+			"successText":", modifications proved successful, fuel able to be reclaimed",
+			"fuel":1
+		},
+		
+		"failure":{
+			"failText":", modifications proved detrimental, fuel consumption rate drastically increased at no benefit, modifications reverted",
+			"fuel":-3
+		}
+	},
+	{
+		"description":"Research Project",
+		"encounterText":"Research team has completed a highly complex project",
+		"condition":{
+			"reqLuck":80,
+			"reqScienceSensor":true,
+			"reqScience":30,
+			"reqShipComputer":true
+		},
+		"score":4,
+		
+		"success":{
+			"successText":", findings proved greatly useful for future scientific endeavours, research team rewarded",
+			"science":5
+		},
+		
+		"failure":{
+			"failText":", findings proved inconclusive, research team advised to utilize time elsewhere",
+			"science":-3,
+			"shipComputer":-1
+		}
+	},
+	{
+		"description":"Oxygen Cloud",
+		"encounterText":"Sensors detected gaseous cloud nearby",
+		"condition":{
+			"reqOxygenSensor":true,
+			"reqScience":40,
+			"reqShipComputer":true
+		},
+		"score":3,
+		
+		"success":{
+			"successText":", spectral analysis confirms it's composition as oxygen, minor course adjustment made to intercept and harvest the gas",
+			"oxygen":2,
+			"fuel":-1
+		},
+		
+		"failure":{
+			"failText":", spectral analysis confirms it's composition as hydrogen, and thus not of any interest"
+		}
+	},
+	{
+		"description":"Life Support Failure",
+		"encounterText":"Life support failure on several decks",
+		"condition":{
+			"reqOxygenSensor":true,
+			"reqShipComputer":true
+		},
+		"score":2,
+		
+		"success":{
+			"successText":", crew alerted at moment of failure, casualties avoided, minor damage to life support systems sustained",
+			"lifeSupport":-2
+		},
+		
+		"failure":{
+			"failText":", system failed to alert crew at time of issue, one casualty and several minor injuries sustained, minor damage to life support sustained",
+			"shipComputer":-3,
+			"lifeSupport":-2,
+			"crew":-1
+		}
+	},
+	{
+		"description":"Computer Diagnostic",
+		"encounterText":"Diagnostic performed on main computer",
+		"condition":{
+			"reqLuck":25,
+			"reqShipComputer":true
+		},
+		"score":1,
+		
+		"success":{
+			"successText":", diagnostic found several technical faults, prompty corrected",
+			"shipComputer":5
+		},
+		
+		"failure":{
+			"failText":", diagnostic failed to find any issues"
+		}
+	},
 	
 	
 	{
@@ -243,6 +360,22 @@
 		"description":"Solar Array Damage",
 		"encounterText":"Extended use of the solar array has lead to standard wear, repair recommended",
 		"solarArray":-1
+	},
+	{
+		"description":"Kitchen Fire",
+		"encounterText":"Fire reported in the mess hall, promptly extinguished with minor injuries sustained, chef to attend fire safety course",
+		"oxygen":-1
+	},
+	{
+		"description":"Engineering Fire",
+		"encounterText":"Fire reported in engineering, cause determined to be neglligent fuel spillage, promptly extinguished with minor injuries sustained, crew members involved reprimanded",
+		"fuel":-1,
+		"oxygen":-2
+	},
+	{
+		"description":"False Alarm",
+		"encounterText":"Reactor leak detected, engineering team on site failed to find it, confirmed to be a false alarm, normal duties resumed",
+		"shipComputer":-1
 	}
 	
 ]

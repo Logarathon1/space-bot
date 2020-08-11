@@ -54,6 +54,36 @@
 >> Success: Gain 1 Science
 >> Failure: Lose 1 Sensors
 
+>  Airlock Malfunction
+>> Requires [1] - Ship Computer
+>> Success: Nothing
+>> Failure: Lose 1 Crew
+
+>  Reactor Optimization
+>> Requires [3] - 80 Luck, Power Sensor, 3 Fuel
+>> Success: Gain 1 Fuel
+>> Failure: Lose 3 Fuel
+
+>  Research Project
+>> Requires [4] - 80 Luck, Science Sensor, 30 Science, Ship Computer
+>> Success: Gain 5 Science
+>> Failure: Lose 3 Science, Lose 1 Ship Computer
+
+>  Oxygen Cloud
+>> Requires [3] - Oxygen Sensor, 40 Science, Ship Computer
+>> Success: Gain 2 Oxygen, Lose 1 Fuel
+>> Failure: Nothing
+
+>  Life Support Failure
+>> Requires [2] - Oxygen Sensor, Ship Computer
+>> Success: Lose 2 Life Support
+>> Failure: Lose 2 Life Support, Lose 3 Ship Computer, Lose 1 Crew
+
+>  Computer Diagnostic
+>> Requires [1] - 25 Luck, Ship Computer
+>> Success: Gain 5 Ship Computer
+>> Failure: Nothing
+
 # Unconditional
 
 >  Useless Comet
@@ -79,3 +109,6 @@
 
 >  Solar Array Damage
 >> Lose 1 Solar Array
+
+>  Kitchen Fire
+>> Lose 1 Oxygen
