@@ -1,5 +1,10 @@
-# Interstellar Bot 1973
-Submission by Team 'certified bot moment' for the 2020 BAS Hackathon
+# Interstellar Bot 1973 - Dev Branch
+
+# This is the dev branch for Interstellar Bot 1973
+
+# If you are a Hackathon Judge looking for the submitted project, go to the master branch
+
+Originally created by Team 'certified bot moment' for the 2020 BAS Hackathon
 Category: Facebook, supplemental Discord component included
 All code and art written and created by Logan Fincham (Discord: Logarathon#6969)
 

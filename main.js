@@ -59,6 +59,7 @@ FB.api("/101226241694587_102150188268859/comments", function (response) {
 	}
 });
 
+var deadPerson;
 var encounterSel
 var toPost = "";
 var hourlyData = "";
