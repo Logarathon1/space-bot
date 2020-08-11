@@ -61,7 +61,7 @@
 
 >  Reactor Optimization
 >> Requires [3] - 80 Luck, Power Sensor, 3 Fuel
->> Success: Gain 1 Fuel
+>> Success: Gain 50% Acceleration
 >> Failure: Lose 3 Fuel
 
 >  Research Project

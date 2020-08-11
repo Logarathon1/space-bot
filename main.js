@@ -136,8 +136,18 @@ cron.schedule('0 * * * *', () => {
 	
 	if (ship.fuel > 0) {
 		ship.fuel--;
-		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2))).toFixed(2);
-		hourlyData += "\nShip has accelerated, new speed: " + ship.speed + "km/s"
+		ship.speed = Number(Number(ship.speed) + Number((Math.random() * ship.accelFactor + 10).toFixed(2))).toFixed(2);
+		if (ship.speed >= 299762 && !ship.hyperlight) {
+			if (!ship.hyperlight) {
+				ship.hyperlight = true;
+				ship.accelFactor *= 25;
+				hourlyData += "\n[Hyperlight Drive: ONLINE]"
+			}
+			hourlyData += "\nShip has accelerated, new speed: " + (ship.speed / 299762).toFixed(2) + "c"
+		}
+		else {
+			hourlyData += "\nShip has accelerated, new speed: " + ship.speed + "km/s"
+		}
 	}
 	else {
 		ship.sensors--;
@@ -150,7 +160,19 @@ cron.schedule('0 * * * *', () => {
 		ship.scienceDatabase--;
 		ship.shipComputer--;
 		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2))).toFixed(2);
-		hourlyData += "\nShip has accelerated, necessary energy diverted from subsystems, new speed: " + ship.speed + "km/s"
+		if (ship.speed >= 299762) {
+			if (ship.hyperlight) {
+				ship.hyperlight = false;
+				ship.accelFactor /= 25;
+				hourlyData += "\n[WARNING: Insufficient fuel to maintain Hyperlight Drive]\nSlowing to sublight speeds, necessary energy to maintain near-light speed diverted from subsystems, new speed: " + ship.speed + "km/s"
+			}
+			else {
+				hourlyData += "\n[WARNING: Insufficient fuel to enable Hyperlight Drive]\nUnable to breach light barrier, necessary energy to maintain near-light speed diverted from subsystems, new speed: " + ship.speed + "km/s"
+			}
+		}
+		else {
+			hourlyData += "\nShip has accelerated, necessary energy diverted from subsystems, new speed: " + ship.speed + "km/s"
+		}
 	}
 	
 	// power tick
@@ -547,6 +569,9 @@ function run () {
 					if (encounterSel.success.speed) {
 						ship.speed = Number(Number(encounterSel.success.speed) + Number(ship.speed)).toFixed(2)
 					}
+					if (encounterSel.success.accelerate) {
+						ship.accelFactor *= encounterSel.success.accelerate;
+					}
 					
 					if (encounterSel.success.lifeSupport) {
 						ship.lifeSupport += encounterSel.success.lifeSupport
@@ -608,6 +633,9 @@ function run () {
 					
 					if (encounterSel.failure.speed) {
 						ship.speed = Number(Number(encounterSel.failure.speed) + Number(ship.speed)).toFixed(2)
+					}
+					if (encounterSel.failure.accelerate) {
+						ship.accelFactor *= encounterSel.failure.accelerate;
 					}
 					
 					if (encounterSel.failure.lifeSupport) {
@@ -683,6 +711,9 @@ function run () {
 				
 				if (encounterSel.speed) {
 					ship.speed = Number(Number(encounterSel.speed) + Number(ship.speed))
+				}
+				if (encounterSel.accelerate) {
+					ship.accelFactor *= encounterSel.accelerate;
 				}
 				
 				if (encounterSel.lifeSupport) {
@@ -813,8 +844,23 @@ class Ship {
 		// used for distance purposes, can be affected by encounters
 		this.speed = (Math.random() * 16 + 8).toFixed(2);
 		
+		// affects the acceleration rate of the ship
+		this.accelFactor = 20;
+		
 		// distance travelled in km
 		this.distanceKM = 0;
+		
+		// distance travelled in light seconds
+		this.distanceLS = 0;
+		
+		// distance travelled in light minutes
+		this.distanceLM = 0;
+		
+		// distance travelled in light hours
+		this.distanceLH = 0;
+		
+		// distance travelled in light days
+		this.distanceLD = 0;
 		
 		// distance travelled in light years
 		this.distanceLY = 0
@@ -1025,16 +1071,34 @@ function getDistanceStamp () {
 	var distanceKM = (((encounterTime - shipTime) / 1000) * ship.speed);
 	ship.previousEncounterTime = encounterTime;
 	ship.distanceKM += distanceKM
-	ship.distanceLY += (distanceKM / (9.461 * 10 ** 12))
+	
+	ship.distanceLS = (ship.distanceKM / (299762))
+	ship.distanceLM = (ship.distanceKM / (1.799 * 10 ** 7))
+	ship.distanceLH = (ship.distanceKM / (1.079 * 10 ** 9))
+	ship.distanceLD = (ship.distanceKM / (2.590 * 10 ** 10))
+	ship.distanceLY = (ship.distanceKM / (9.461 * 10 ** 12))
 	
 	distanceKM = Number(ship.distanceKM)
-	
-	console.log(ship.distanceKM)
-	
+	distanceLS = Number(ship.distanceLS)
+	distanceLM = Number(ship.distanceLM)
+	distanceLH = Number(ship.distanceLH)
+	distanceLD = Number(ship.distanceLD)
 	distanceLY = Number(ship.distanceLY)
+
+	var toReturn = "" + distanceKM.toFixed(2) + " kilometres ("
 	
-	console.log(ship.distanceLY)
+	if (distanceLY.toFixed(2) > 0) {
+		toReturn += (distanceLY).toFixed(2) + " ly) travelled] "
+	} else if (distanceLD.toFixed(2) > 0) {
+		toReturn += (distanceLD).toFixed(2) + " ld) travelled] "
+	} else if (distanceLH.toFixed(2) > 0) {
+		toReturn += (distanceLH).toFixed(2) + " lh) travelled] "
+	} else if (distanceLM.toFixed(2) > 0) {
+		toReturn += (distanceLM).toFixed(2) + " lm) travelled] "
+	} else {
+		toReturn += (distanceLS).toFixed(2) + " ls) travelled] "
+	}
 	
-	return("" + distanceKM.toFixed(2) + " kilometres (" + (distanceLY).toFixed(4) + " ly) travelled] ")
+	return(toReturn)
 }
 

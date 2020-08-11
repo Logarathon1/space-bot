@@ -226,8 +226,8 @@
 		"score":3,
 		
 		"success":{
-			"successText":", modifications proved successful, fuel able to be reclaimed",
-			"fuel":1
+			"successText":", modifications proved successful, fuel efficiency increased by 50%",
+			"accelerate":1.5
 		},
 		
 		"failure":{
@@ -376,6 +376,11 @@
 		"description":"False Alarm",
 		"encounterText":"Reactor leak detected, engineering team on site failed to find it, confirmed to be a false alarm, normal duties resumed",
 		"shipComputer":-1
+	},
+	{
+		"description":"Random Data Loss",
+		"encounterText":"Several files in the scientific database accidentally overwritten, most files recovered",
+		"science":-1
 	}
 	
 ]
