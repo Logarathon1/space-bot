@@ -384,6 +384,16 @@ client.on ("message", (message) => {
 			.addField("io!help","Displays this command directory");
 			message.channel.send({embed});
 			break;
+			
+			case "kill":
+			var toKill = 1;
+			if (newMessage[2]) {
+				toKill = newMessage[2]
+			}
+			
+			for 
+			
+			break;
 		}
 	}
 	
