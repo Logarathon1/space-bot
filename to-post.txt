@@ -3,3 +3,5 @@
 [15:06:29 10/08/2020 UTC] Encountered a stray comet, not of any use for any resource or scientific purposes, but a sight to behold nonetheless
 
 [15:13:18 10/08/2020 UTC] Encountered a gravitational anomaly, ship slowed down slightly, but scientific data gained could prove useful in the future
+
+[09:28:23 16/08/2020 UTC] Encountered a derelict space probe, several components still operational and able to be salvaged, integrated into systems with no difficulty
