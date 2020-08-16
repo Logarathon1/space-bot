@@ -72,7 +72,20 @@ stdin.addListener ("data", function (d) {
 	// allows encounters to be 'forced' by pressing enter in the console window a few times
 	console.log("input = [" + d.toString().trim() + "]");
 	inputData = d.toString().trim();
-	run();
+	if (inputData == "kill") {
+		var toKill = -1;
+		
+		for (i = 0; i > toKill; i--) {
+			deadPersonIndex = Math.floor(Math.random() * ship.crew.length)
+			deadPerson = ship.crew[deadPersonIndex];
+			ship.crew.splice(deadPersonIndex,1)
+			console.log("\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>")
+			console.log(ship.crew.length)
+		}
+	}
+	else {
+		run();
+	}
 })
 
 cron.schedule('0 * * * *', () => {
@@ -385,15 +398,7 @@ client.on ("message", (message) => {
 			message.channel.send({embed});
 			break;
 			
-			case "kill":
-			var toKill = 1;
-			if (newMessage[2]) {
-				toKill = newMessage[2]
-			}
 			
-			for 
-			
-			break;
 		}
 	}
 	
