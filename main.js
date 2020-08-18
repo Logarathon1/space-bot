@@ -117,7 +117,9 @@ cron.schedule('0 * * * *', () => {
 	if (ship.oxygen < 20) {
 		//	kill someone
 		//	anyone
-		deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+		deadPersonIndex = Math.floor(Math.random() * ship.crew.length)
+		deadPerson = ship.crew[deadPersonIndex];
+		ship.crew.splice(deadPersonIndex,1)
 		hourlyData += "\n" + deadPerson.rank + " " + deadPerson.name + " has died due to insufficent oxygen levels"
 	}
 	
@@ -403,6 +405,8 @@ client.on ("message", (message) => {
 			.addField("io!help","Displays this command directory");
 			message.channel.send({embed});
 			break;
+			
+			
 		}
 	}
 	
@@ -634,7 +638,9 @@ function run () {
 					if (encounterSel.success.crew) {
 						if (encounterSel.success.crew < 0) {
 							for (i = 0; i > encounterSel.success.crew; i--) {
-								deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+								deadPersonIndex = Math.floor(Math.random() * ship.crew.length)
+								deadPerson = ship.crew[deadPersonIndex];
+								ship.crew.splice(deadPersonIndex,1)
 								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
 							}
 						}
@@ -783,7 +789,9 @@ function run () {
 					if (encounterSel.failure.crew) {
 						if (encounterSel.failure.crew < 0) {
 							for (i = 0; i > encounterSel.failure.crew; i--) {
-								deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+								deadPersonIndex = Math.floor(Math.random() * ship.crew.length)
+								deadPerson = ship.crew[deadPersonIndex];
+								ship.crew.splice(deadPersonIndex,1)
 								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
 							}
 						}
@@ -941,7 +949,9 @@ function run () {
 				if (encounterSel.crew) {
 					if (encounterSel.crew < 0) {
 						for (i = 0; i > encounterSel.crew; i--) {
-							deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+							deadPersonIndex = Math.floor(Math.random() * ship.crew.length)
+							deadPerson = ship.crew[deadPersonIndex];
+							ship.crew.splice(deadPersonIndex,1)
 							toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
 						}
 					}
@@ -1155,7 +1165,7 @@ class Ship {
 		// was having an issue with i not existing, stupid bot
 		var i = 0;
 		
-		var totalCrew = Math.floor(Math.random() * 200 + 100);
+		var totalCrew = Math.floor(Math.random() * 150 + 50);
 		
 		for (i = 0; i < totalCrew; i++) {
 			if (crewnames.length > 0) {
@@ -1176,24 +1186,69 @@ class Person {
 		
 		if (rank == 0){
 			this.rank = "Captain"
+			this.position = "Command"
 		}
 		else if (rank == 1) {
 			this.rank = "Commander"
+			this.position = "Command"
 		}
 		else if (rank < 4) {
 			this.rank = "Lieutentant Commander"
+			if (this.rank == 2) {
+				this.position = "Science"
+			}
+			else {
+				this.position = "Engineering"
+			}
 		}
 		else if (rank < 8) {
 			this.rank = "Lieutentant"
+			switch (Math.floor(Math.random() * 3)) {
+				case 0:
+				this.position = "Command"
+				break;
+				
+				case 1:
+				this.position = "Science"
+				break;
+				
+				case 2:
+				this.position = "Engineering"
+				break;
+			}
+			
 		}
 		else if (rank < 16) {
 			this.rank = "Lieutentant JR"
+			switch (Math.floor(Math.random() * 3)) {
+				case 0:
+				this.position = "Command"
+				break;
+				
+				case 1:
+				this.position = "Science"
+				break;
+				
+				case 2:
+				this.position = "Engineering"
+				break;
+			}
 		}
 		else if (rank < 64) {
 			this.rank = "Ensign"
+			switch (Math.floor(Math.random() * 2)) {
+				case 0:
+				this.position = "Science"
+				break;
+				
+				case 1:
+				this.position = "Engineering"
+				break;
+			}
 		}
 		else {
 			this.rank = "Civilian"
+			this.position = "Civilian"
 		}
 		
 		this.age = Math.floor(Math.random() * 55 + 17);
