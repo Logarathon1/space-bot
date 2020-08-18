@@ -159,6 +159,7 @@ cron.schedule('0 * * * *', () => {
 		ship.solarArray--;
 		ship.scienceDatabase--;
 		ship.shipComputer--;
+		ship.shields--;
 		ship.speed = Number(Number(ship.speed) + Number((Math.random() * 20 + 10).toFixed(2))).toFixed(2);
 		if (ship.speed >= 299762) {
 			if (ship.hyperlight) {
@@ -225,9 +226,29 @@ cron.schedule('0 * * * *', () => {
 			break;
 			
 			case 9:
-			ship.shipIntegrity--;
-			hourlyData += "\nShip integrity has been damaged due to insufficient power"
+			ship.shields--;
+			hourlyData += "\nShield integrity has been damaged due to insufficient power"
 			break;
+		}
+	}
+	
+	// shields tick
+	
+	if (ship.power > 0 && ship.shields < 100) {
+		var toRegen = 100 - ship.shields;
+		if (toRegen > 4) {
+			toRegen = 4;
+		}
+		if (ship.power >= toRegen) {
+			ship.shields += toRegen;
+			ship.power -= toRegen;
+			hourlyData += "\nShields recharged by " + toRegen + "%, now at " + ship.shields + "%"
+		}
+		else {
+			ship.shields += ship.power;
+			hourlyData += "\nShields recharged by " + ship.power + "%, now at " + ship.shields + "%"
+			ship.power = 0;
+			
 		}
 	}
 	
@@ -487,7 +508,7 @@ function run () {
 				// resources (oxygen, fuel, power) award score if the required amount is present
 				// systems (all sensors, life support, etc) will roll a chance based on their integrity
 				// science can roll on either chance or quantity depending on the encounter
-				// ship integrity will always roll on both methods
+				// shields and ship integrity will always roll on both methods
 				
 				var score = 0;
 				
@@ -506,6 +527,9 @@ function run () {
 					score++;
 				}
 				if (encounterSel.condition.reqShipIntegrity && ship.shipIntegrity > encounterSel.condition.reqShipIntegrity) {
+					score++;
+				}
+				if (encounterSel.condition.reqShields && ship.shields > encounterSel.condition.reqShields) {
 					score++;
 				}
 				
@@ -539,6 +563,9 @@ function run () {
 					score++;
 				}
 				if (encounterSel.condition.reqShipIntegrity && Math.random() < (ship.shipIntegrity / 100)) {
+					score++;
+				}
+				if (encounterSel.condition.reqShields && Math.random() < (ship.shields / 100)) {
 					score++;
 				}
 				if (encounterSel.condition.reqLuck && Math.random() < (encounterSel.reqLuck / 100)) {
@@ -597,6 +624,9 @@ function run () {
 					if (encounterSel.success.shipIntegrity) {
 						ship.shipIntegrity += encounterSel.success.shipIntegrity
 					}
+					if (encounterSel.success.shields) {
+						ship.shields += encounterSel.success.shields
+					}
 					if (encounterSel.success.solarArray) {
 						ship.solarArray += encounterSel.success.solarArray
 					}
@@ -609,6 +639,87 @@ function run () {
 							}
 						}
 					}
+					
+					if (encounterSel.success.damage) {
+						// check if shields blocked
+						if (ship.shields > 0) {
+							
+							toAdd += encounterSel.success.damage.shieldText;
+							
+							if (Math.random() < ship.shields / 100) {
+								// min shield damage
+								ship.shields--;
+							}
+							else {
+								// max shield damage
+								ship.shields += encounterSel.success.damage.amount
+							}
+						}
+						else {
+							// no shields
+							ship.shipIntegrity += encounterSel.success.damage.amount;
+							toAdd += encounterSel.success.damage.hullText
+							
+							// do things that happen if the hull is damaged
+							
+							if (encounterSel.success.damage.hullDamage) {
+								if (encounterSel.success.damage.hullDamage.oxygen) {
+									ship.oxygen += encounterSel.success.damage.hullDamage.oxygen
+								}
+								if (encounterSel.success.damage.hullDamage.fuel) {
+									ship.fuel += encounterSel.success.damage.hullDamage.fuel
+								}
+								if (encounterSel.success.damage.hullDamage.power) {
+									ship.power += encounterSel.success.damage.hullDamage.power
+								}
+								if (encounterSel.success.damage.hullDamage.science) {
+									ship.scienceDatabase += encounterSel.success.damage.hullDamage.science
+								}
+					
+								if (encounterSel.success.damage.hullDamage.speed) {
+									ship.speed = Number(Number(encounterSel.success.damage.hullDamage.speed) + Number(ship.speed)).toFixed(2)
+								}
+								if (encounterSel.success.damage.hullDamage.accelerate) {
+									ship.accelFactor *= encounterSel.success.damage.hullDamage.accelerate;
+								}
+					
+								if (encounterSel.success.damage.hullDamage.lifeSupport) {
+									ship.lifeSupport += encounterSel.success.damage.hullDamage.lifeSupport
+								}
+								if (encounterSel.success.damage.hullDamage.sensors) {
+									ship.sensors += encounterSel.success.damage.hullDamage.sensors
+								}
+								if (encounterSel.success.damage.hullDamage.oxygenSensor) {
+									ship.oxygenSensor += encounterSel.success.damage.hullDamage.oxygenSensor
+								}
+								if (encounterSel.success.damage.hullDamage.fuelSensor) {
+									ship.fuelSensor += encounterSel.success.damage.hullDamage.fuelSensor
+								}
+								if (encounterSel.success.damage.hullDamage.powerSensor) {
+									ship.powerSensor += encounterSel.success.damage.hullDamage.powerSensor
+								}
+								if (encounterSel.success.damage.hullDamage.scienceSensor) {
+									ship.scienceSensor += encounterSel.success.damage.hullDamage.scienceSensor
+								}
+								if (encounterSel.success.damage.hullDamage.shipComputer) {
+									ship.shipComputer += encounterSel.success.damage.hullDamage.shipComputer
+								}
+								if (encounterSel.success.damage.hullDamage.solarArray) {
+									ship.solarArray += encounterSel.success.damage.hullDamage.solarArray
+								}
+					
+								if (encounterSel.success.damage.hullDamage.crew) {
+									if (encounterSel.success.damage.hullDamage.crew < 0) {
+										for (i = 0; i > encounterSel.success.damage.hullDamage.crew; i--) {
+											deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+											toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+										}
+									}
+								}
+							}
+						}
+					}
+				
 				}
 				else {
 					// fail
@@ -662,6 +773,9 @@ function run () {
 					if (encounterSel.failure.shipIntegrity) {
 						ship.shipIntegrity += encounterSel.failure.shipIntegrity
 					}
+					if (encounterSel.failure.shields) {
+						ship.shields += encounterSel.failure.shields
+					}
 					if (encounterSel.failure.solarArray) {
 						ship.solarArray += encounterSel.failure.solarArray
 					}
@@ -671,6 +785,86 @@ function run () {
 							for (i = 0; i > encounterSel.failure.crew; i--) {
 								deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
 								toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+							}
+						}
+					}
+					
+					if (encounterSel.failure.damage) {
+						// check if shields blocked
+						if (ship.shields > 0) {
+							
+							toAdd += encounterSel.failure.damage.shieldText;
+							
+							if (Math.random() < ship.shields / 100) {
+								// min shield damage
+								ship.shields--;
+							}
+							else {
+								// max shield damage
+								ship.shields += encounterSel.failure.damage.amount
+							}
+						}
+						else {
+							// no shields
+							ship.shipIntegrity += encounterSel.failure.damage.amount;
+							toAdd += encounterSel.failure.damage.hullText
+							
+							// do things that happen if the hull is damaged
+							
+							if (encounterSel.failure.damage.hullDamage) {
+								if (encounterSel.failure.damage.hullDamage.oxygen) {
+									ship.oxygen += encounterSel.failure.damage.hullDamage.oxygen
+								}
+								if (encounterSel.failure.damage.hullDamage.fuel) {
+									ship.fuel += encounterSel.failure.damage.hullDamage.fuel
+								}
+								if (encounterSel.failure.damage.hullDamage.power) {
+									ship.power += encounterSel.failure.damage.hullDamage.power
+								}
+								if (encounterSel.failure.damage.hullDamage.science) {
+									ship.scienceDatabase += encounterSel.failure.damage.hullDamage.science
+								}
+					
+								if (encounterSel.failure.damage.hullDamage.speed) {
+									ship.speed = Number(Number(encounterSel.failure.damage.hullDamage.speed) + Number(ship.speed)).toFixed(2)
+								}
+								if (encounterSel.failure.damage.hullDamage.accelerate) {
+									ship.accelFactor *= encounterSel.failure.damage.hullDamage.accelerate;
+								}
+					
+								if (encounterSel.failure.damage.hullDamage.lifeSupport) {
+									ship.lifeSupport += encounterSel.failure.damage.hullDamage.lifeSupport
+								}
+								if (encounterSel.failure.damage.hullDamage.sensors) {
+									ship.sensors += encounterSel.failure.damage.hullDamage.sensors
+								}
+								if (encounterSel.failure.damage.hullDamage.oxygenSensor) {
+									ship.oxygenSensor += encounterSel.failure.damage.hullDamage.oxygenSensor
+								}
+								if (encounterSel.failure.damage.hullDamage.fuelSensor) {
+									ship.fuelSensor += encounterSel.failure.damage.hullDamage.fuelSensor
+								}
+								if (encounterSel.failure.damage.hullDamage.powerSensor) {
+									ship.powerSensor += encounterSel.failure.damage.hullDamage.powerSensor
+								}
+								if (encounterSel.failure.damage.hullDamage.scienceSensor) {
+									ship.scienceSensor += encounterSel.failure.damage.hullDamage.scienceSensor
+								}
+								if (encounterSel.failure.damage.hullDamage.shipComputer) {
+									ship.shipComputer += encounterSel.failure.damage.hullDamage.shipComputer
+								}
+								if (encounterSel.failure.damage.hullDamage.solarArray) {
+									ship.solarArray += encounterSel.failure.damage.hullDamage.solarArray
+								}
+					
+								if (encounterSel.failure.damage.hullDamage.crew) {
+									if (encounterSel.failure.damage.hullDamage.crew < 0) {
+										for (i = 0; i > encounterSel.failure.damage.hullDamage.crew; i--) {
+											deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+											toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+										}
+									}
+								}
 							}
 						}
 					}
@@ -749,6 +943,86 @@ function run () {
 						for (i = 0; i > encounterSel.crew; i--) {
 							deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
 							toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+						}
+					}
+				}
+				
+				if (encounterSel.damage) {
+					// check if shields blocked
+					if (ship.shields > 0) {
+						
+						toAdd += encounterSel.damage.shieldText;
+						
+						if (Math.random() < ship.shields / 100) {
+							// min shield damage
+							ship.shields--;
+						}
+						else {
+							// max shield damage
+							ship.shields += encounterSel.damage.amount
+						}
+					}
+					else {
+						// no shields
+						ship.shipIntegrity += encounterSel.damage.amount;
+						toAdd += encounterSel.damage.hullText
+						
+						// do things that happen if the hull is damaged
+						
+						if (encounterSel.damage.hullDamage) {
+							if (encounterSel.damage.hullDamage.oxygen) {
+								ship.oxygen += encounterSel.damage.hullDamage.oxygen
+							}
+							if (encounterSel.damage.hullDamage.fuel) {
+								ship.fuel += encounterSel.damage.hullDamage.fuel
+							}
+							if (encounterSel.damage.hullDamage.power) {
+								ship.power += encounterSel.damage.hullDamage.power
+							}
+							if (encounterSel.damage.hullDamage.science) {
+								ship.scienceDatabase += encounterSel.damage.hullDamage.science
+							}
+				
+							if (encounterSel.damage.hullDamage.speed) {
+								ship.speed = Number(Number(encounterSel.damage.hullDamage.speed) + Number(ship.speed)).toFixed(2)
+							}
+							if (encounterSel.damage.hullDamage.accelerate) {
+								ship.accelFactor *= encounterSel.damage.hullDamage.accelerate;
+							}
+				
+							if (encounterSel.damage.hullDamage.lifeSupport) {
+								ship.lifeSupport += encounterSel.damage.hullDamage.lifeSupport
+							}
+							if (encounterSel.damage.hullDamage.sensors) {
+								ship.sensors += encounterSel.damage.hullDamage.sensors
+							}
+							if (encounterSel.damage.hullDamage.oxygenSensor) {
+								ship.oxygenSensor += encounterSel.damage.hullDamage.oxygenSensor
+							}
+							if (encounterSel.damage.hullDamage.fuelSensor) {
+								ship.fuelSensor += encounterSel.damage.hullDamage.fuelSensor
+							}
+							if (encounterSel.damage.hullDamage.powerSensor) {
+								ship.powerSensor += encounterSel.damage.hullDamage.powerSensor
+							}
+							if (encounterSel.damage.hullDamage.scienceSensor) {
+								ship.scienceSensor += encounterSel.damage.hullDamage.scienceSensor
+							}
+							if (encounterSel.damage.hullDamage.shipComputer) {
+								ship.shipComputer += encounterSel.damage.hullDamage.shipComputer
+							}
+							if (encounterSel.damage.hullDamage.solarArray) {
+								ship.solarArray += encounterSel.damage.hullDamage.solarArray
+							}
+				
+							if (encounterSel.damage.hullDamage.crew) {
+								if (encounterSel.damage.hullDamage.crew < 0) {
+									for (i = 0; i > encounterSel.damage.hullDamage.crew; i--) {
+										deadPerson = ship.crew.splice(Math.floor(Math.random() * ship.crew.length), 1)
+										toAdd += "\n<" + deadPerson.rank + " " + deadPerson.name + " deceased>" 
+									}
+								}
+							}
 						}
 					}
 				}
@@ -834,6 +1108,12 @@ class Ship {
 		
 		// the integrity of the solar array, below 50% power will drain at a rate of 1 per hour
 		this.solarArray = 100;
+		
+		// protects the ship integrity from being damaged
+		// if the ship integrity would be damaged, will roll a chance to block based on the score and how badly the ship would be damaged
+		// if successful, shields will take one damage, if fail, shields take damage equivalent to what the hull would take
+		// every hour, a maximum of four power will be converted into four shields if possible
+		this.energyShields = 100;
 		
 		// the integrity of the ship itself, it degrading has a chance to kill the crew
 		// also encompasses propulsion systems
