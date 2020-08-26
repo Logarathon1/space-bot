@@ -30,8 +30,12 @@
 		},
 		
 		"failure":{
-			"failText":", insufficent fuel to execute full course correction, hull damage sustained",
-			"shipIntegrity":-5,
+			"failText":", insufficent fuel to execute full course correction, damage sustained",
+			"damage":{
+				"amount":-5,
+				"shieldsText":"",
+				"hullText":"",
+			},
 			"oxygen":-2
 			
 		}
@@ -50,11 +54,16 @@
 		},
 		
 		"failure":{
-			"failText":", insufficent fuel to execute full course correction, hull breach sustained, several crew members lost",
-			"shipIntegrity":-7,
-			"crew":-5,
-			"oxygen":-10
-			
+			"failText":", insufficent fuel to execute full course correction",
+			"damage":{
+				"amount":-7,
+				"shieldsText":", shields prevented majority of damage",
+				"hullText":", hull breach sustained, several crew members lost",
+				"hullDamage":{
+					"crew":-5,
+					"oxygen":-10
+				}
+			}
 		}
 	},
 	{
@@ -122,14 +131,24 @@
 		"score":1,
 		
 		"success":{
-			"successText":", minor hull damage sustained",
-			"shipIntegrity":-1
+			"successText":"",
+			"damage":{
+				"amount":-1,
+				"shieldsText":", shields prevented hull damage",
+				"hullText":", minor hull damage sustained",
+			}
 		},
 		
 		"failure":{
-			"failText":", multiple hull breaches sustained in fuel storage section, significant fuel lost",
-			"fuel":-5,
-			"shipIntegrity":-3
+			"failText":"",
+			"damage":{
+				"amount":-3,
+				"shieldsText":", shields prevented several hull breaches",
+				"hullText":", multiple hull breaches sustained in fuel storage section, significant fuel lost",
+				"hullDamage":{
+					"fuel":-5
+				}
+			}
 		}
 	},
 	{
@@ -142,8 +161,12 @@
 		"score":2,
 		
 		"success":{
-			"successText":", successfully retracted in time, minor hull damage sustained",
-			"shipIntegrity":-1
+			"successText":", successfully retracted in time",
+			"damage":{
+				"amount":-1,
+				"shieldsText":", shields prevented minor hull damage",
+				"hullText":", minor hull damage sustained",
+			}
 		},
 		
 		"failure":{
@@ -213,6 +236,42 @@
 		"failure":{
 			"failText":", crew member sent to repair was in airlock at time of malfunction and ejected into space, technical fault corrected shortly after",
 			"crew":-1
+		}
+	},
+	{
+		"description":"Reactor Accident",
+		"encounterText":"",
+		"condition":{
+			"reqLuck":80
+		},
+		"score":1,
+		
+		"success":{
+			"successText":"Propulsion reactor guarding found to be faulty on routine safety inspection, hazard noted and rectified"
+		},
+		
+		"failure":{
+			"failText":"Crew member leaned on main propulsion reactor, guarding on the unit was faulty, crew member exposed to fatal temperature levels, technical fault repaired at once",
+			"crew":-1
+		}
+	},
+	{
+		"description":"Derelict Probe - Severe Virus",
+		"encounterText":"Encountered a derelict space probe, computer core intact",
+		"condition":{
+			"reqLuck":80,
+			"reqScienceSensor":true
+		},
+		"score":1,
+		
+		"success":{
+			"successText":", preliminary analysis revealed it to contain anomalous code, subsequent scans revealed it to be a malicious virus, probe promptly destroyed",
+			"shipComputer":-1
+		},
+		
+		"failure":{
+			"failText":", scientist responsible for analysis failed to perform preliminary scans before connecting to ship computer, probe revealed to contain a malicious virus, severe damage to ship computer systems sustained, scientist responsible tasked with repairing the damage",
+			"shipComputer":-8
 		}
 	},
 	{
@@ -316,6 +375,24 @@
 			"failText":", diagnostic failed to find any issues"
 		}
 	},
+	{
+		"description":"Power Overload",
+		"encounterText":"",
+		"condition":{
+			"reqPower":60
+		},
+		"score":1,
+		
+		"success":{
+			"successText":"Overload detected in ship power containment cells, excess power vented through electrical sensor, moderate power loss",
+			"power":-25
+		},
+		
+		"failure":{
+			"failText":"Overload detected in solar array, excess power safely routed into containment cells",
+			"power":10
+		}
+	},
 	
 	
 	{
@@ -336,8 +413,12 @@
 	},
 	{
 		"description":"Asteroid Stream",
-		"encounterText":"Ship caught in a stream of small asteroids, minor hull damage sustained",
-		"shipIntegrity":-1
+		"encounterText":"Ship caught in a stream of small asteroids",
+		"damage":{
+			"amount":-1,
+			"shieldsText":", shields prevented minor hull damage",
+			"hullText":", minor hull damage sustained",
+		}
 	},
 	{
 		"description":"Cosmic Interference",
@@ -346,18 +427,19 @@
 		"shipComputer":-1
 	},
 	{
-		"description":"Crew Accident",
-		"encounterText":"Crew member leaned on main propulsion reactor, guarding on the unit was faulty, crew member exposed to fatal temperature levels, technical fault repaired at once",
-		"crew":-1
-	},
-	{
-		"description":"Derelict Probe",
+		"description":"Derelict Probe - Solar and Sensors",
 		"encounterText":"Encountered a derelict space probe, several components still operational and able to be salvaged, integrated into systems with no difficulty",
 		"sensors":1,
 		"solarArray":1
 	},
 	{
-		"description":"Solar Array Damage",
+		"description":"Derelict Probe - Science and Computer",
+		"encounterText":"Encountered a derelict space probe, communications array damaged but otherwise intact, main computer salvaged for analysis and integration",
+		"shipComputer":1,
+		"science":1
+	},
+	{
+		"description":"Solar Array Damage - Small",
 		"encounterText":"Extended use of the solar array has lead to standard wear, repair recommended",
 		"solarArray":-1
 	},
@@ -381,6 +463,16 @@
 		"description":"Random Data Loss",
 		"encounterText":"Several files in the scientific database accidentally overwritten, most files recovered",
 		"science":-1
+	},
+	{
+		"description":"Ship Integrity Repairs",
+		"encounterText":"Maintenance carried out on ship hull, several structural issues repaired",
+		"shipIntegrity":5
+	},
+	{
+		"description":"Solar Array Damage - Large",
+		"encounterText":"Ship struck by high intensity UV burst, damage to solar array cells detected, other ship systems unaffected",
+		"solarArray":-3
 	}
 	
 ]
