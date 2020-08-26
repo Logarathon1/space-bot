@@ -978,7 +978,7 @@ class Person {
 }
 
 function checkDead () {
-	if (ship.integrity < 1) {
+	if (ship.shipIntegrity < 1) {
 		return 1;
 	}
 	if (ship.crew.length < 1) {
